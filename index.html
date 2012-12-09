@@ -1,0 +1,41 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width; height=device-height; user-scalable=no" />
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+    <title>Device Properties Example</title>
+
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/cordova-2.2.0.js"></script>
+    <script type="text/javascript" charset="utf-8">
+
+      $(document).ready(function() {
+        //alert("document ready")
+        $('#deviceProperties').html("page loaded")
+      })
+
+      // Wait for Cordova to load
+      //
+      document.addEventListener("deviceready", onDeviceReady, false);
+
+      // Cordova is ready
+      //
+      function onDeviceReady() {
+        alert("deviceready")
+        var element = document.getElementById('deviceProperties');
+
+        element.innerHTML = 'Device Name: '     + device.name     + '<br />' +
+                            'Device Cordova: '  + device.cordova  + '<br />' +
+                            'Device Platform: ' + device.platform + '<br />' +
+                            'Device UUID: '     + device.uuid     + '<br />' +
+                            'Device Version: '  + device.version  + '<br />';
+      }
+
+    </script>
+  </head>
+  <body>
+    <p id="deviceProperties">Loading device properties...</p>
+  </body>
+</html>
