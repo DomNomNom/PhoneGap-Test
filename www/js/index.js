@@ -19,6 +19,11 @@
 var app = {
     initialize: function() {
         this.bind();
+        //alert("handered was added")
+        //$(document).click(function() {alert("OMG")})
+        $("h1").click(function() {
+          alert("Handler for .click() called.");
+        });
     },
     bind: function() {
         document.addEventListener('deviceready', this.deviceready, false);
@@ -27,9 +32,6 @@ var app = {
         // This is an event handler function, which means the scope is the event.
         // So, we must explicitly called `app.report()` instead of `this.report()`.
         app.report('deviceready');
-        $('h1').onClick(function() {
-            alert("click")
-        })
     },
     report: function(id) {
         // Report the event in the console
