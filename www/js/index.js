@@ -19,14 +19,19 @@
 var app = {
     initialize: function() {
         this.bind();
-        //alert("handered was added")
-        //$(document).click(function() {alert("OMG")})
+        $(document).ready(this.documentready)
+        /*
         $("h1").click(function() {
           alert("Handler for .click() called.");
         });
+        */
+        //alert("handered was added")
     },
     bind: function() {
         document.addEventListener('deviceready', this.deviceready, false);
+    },
+    documentready: function() {
+        $(".draggable" ).draggable();
     },
     deviceready: function() {
         // This is an event handler function, which means the scope is the event.
