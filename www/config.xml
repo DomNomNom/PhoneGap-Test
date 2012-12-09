@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "com.phonegap.test"
+        id        = "parallaxinteractive.test"
         version   = "2.0.0">
-    <name>Phone gap test</name>
+    <name>test - Hellp World</name>
 
     <description>
-        Mash all off them words.
+        Mash all off them words!
     </description>
 
     <author href="http://parallaxinteractive.co.nz" email="support@parallaxinteractive.co.nz">
