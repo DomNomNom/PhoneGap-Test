@@ -32,6 +32,11 @@ var app = {
     },
     documentready: function() {
         $(".draggable" ).draggable();
+
+        // disable moving the screen
+        $(document).ready(function() {
+          document.addEventListener('touchmove', function(e) { e.preventDefault(); }, false);
+        });
     },
     deviceready: function() {
         // This is an event handler function, which means the scope is the event.
