@@ -16,6 +16,8 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
+
 var app = {
     initialize: function() {
         this.bind();
@@ -29,17 +31,28 @@ var app = {
     },
     bind: function() {
         document.addEventListener('deviceready', this.deviceready, false);
+
+        document.addEventListener("touchstart", touchHandler, true);
+        document.addEventListener("touchmove", touchHandler, true);
+        document.addEventListener("touchend", touchHandler, true);
+        document.addEventListener("touchcancel", touchHandler, true);
     },
     documentready: function() {
+        /*
         $(".draggable" ).draggable();
         $(".draggable" ).click(function() {
             alert("CLICK")
         });
+        */
+
 
         // disable moving the screen
+        //$('.app').preventUglyScroll();
+        /*
         $(document).ready(function() {
           document.addEventListener('touchmove', function(e) { e.preventDefault(); }, false);
         });
+        */
     },
     deviceready: function() {
         // This is an event handler function, which means the scope is the event.
@@ -58,3 +71,60 @@ var app = {
         completeElem.className = completeElem.className.split('hide').join('');
     }
 };
+
+$( init );
+function init() {
+}
+function touchHandler(event) {
+    alert("touch handler")
+    var touches = event.changedTouches,
+    first = touches[0],
+    type = "";
+    switch(event.type) {
+      case "touchstart": type="mousedown"; break;
+      case "touchmove":  type="mousemove"; break;
+      case "touchend":   type="mouseup"; break;
+      default: return;
+    }
+    var simulatedEvent = document.createEvent("MouseEvent");
+    simulatedEvent.initMouseEvent(type, true, true, window, 1,
+                      first.screenX, first.screenY,
+                      first.clientX, first.clientY, false,
+                      false, false, false, 0/*left*/, null);
+    first.target.dispatchEvent(simulatedEvent);
+    event.preventDefault();
+}
+
+/*
+// Prevent ugly scrolling on this element
+(function($){
+    $.fn.preventUglyScroll = function(){
+
+        var node = this[0];
+
+        node.ontouchstart = function(event) {
+            touchStart = event;
+            frameStart = $(node).offset().top;
+        }
+
+        node.ontouchmove = function(event){
+
+            // block all two finger gestures
+            if(event.touches.length > 1) {
+                event.preventDefault();
+                return false;
+            }
+
+            event.preventDefault();
+
+            var yDiff     = event.pageY - touchStart.pageY;
+            var newTop  = yDiff + frameStart;
+            var hMin     = 460 - $(node).height();
+            if(newTop <= 0 && newTop > hMin) {
+                $(node).css('margin-top', newTop);
+            }
+        }
+    }
+})(jQuery);
+
+*/
