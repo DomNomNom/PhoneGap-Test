@@ -32,6 +32,9 @@ var app = {
     },
     documentready: function() {
         $(".draggable" ).draggable();
+        $(".draggable" ).click(function() {
+            alert("CLICK")
+        });
 
         // disable moving the screen
         $(document).ready(function() {
