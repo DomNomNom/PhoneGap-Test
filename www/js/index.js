@@ -31,11 +31,12 @@ var app = {
     },
     bind: function() {
         document.addEventListener('deviceready', this.deviceready, false);
-
+        /*
         document.addEventListener("touchstart", touchHandler, true);
         document.addEventListener("touchmove", touchHandler, true);
         document.addEventListener("touchend", touchHandler, true);
         document.addEventListener("touchcancel", touchHandler, true);
+        */
     },
     documentready: function() {
         /*
@@ -72,9 +73,6 @@ var app = {
     }
 };
 
-$( init );
-function init() {
-}
 function touchHandler(event) {
     alert("touch handler")
     var touches = event.changedTouches,
