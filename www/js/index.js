@@ -73,6 +73,7 @@ var app = {
     }
 };
 
+/*
 function touchHandler(event) {
     alert("touch handler")
     var touches = event.changedTouches,
@@ -88,10 +89,11 @@ function touchHandler(event) {
     simulatedEvent.initMouseEvent(type, true, true, window, 1,
                       first.screenX, first.screenY,
                       first.clientX, first.clientY, false,
-                      false, false, false, 0/*left*/, null);
+                      false, false, false, 0, null);
     first.target.dispatchEvent(simulatedEvent);
     event.preventDefault();
 }
+*/
 
 /*
 // Prevent ugly scrolling on this element

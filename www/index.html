@@ -1,36 +1,48 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>Hello World</title>
-    </head>
-    <body>
-        <div class="app">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="
+      user-scalable=no,
+      initial-scale=1,
+      maximum-scale=1,
+      minimum-scale=1,
+      width=device-width,
+      height=device-height,
+      target-densitydpi=device-dpi"
+    />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <title>Hello World2</title>
+  </head>
+  <body>
+    <!--
+    <div class="app">
 
-            <h1>PhoneGap</h1>
-            <div id="deviceready" class="ui-draggable">
-                <p class="status pending blink">Connecting to Device</p>
-                <p class="status complete blink hide">Device is Ready, YAY 4.0!!</p>
-            </div>
+      <h1>PhoneGap</h1>
+      <div id="deviceready" class="ui-draggable">
+        <p class="status pending blink">Connecting to Device</p>
+        <p class="status complete blink hide">Device is Ready, YAY 4.0!!</p>
+      </div>
 
-            <div class="magnet draggable">
-                Tuatara
-            </div>
+      <div class="magnet draggable">
+        Tuatara
+      </div>
+
+    </div>
+    -->
+    <canvas  data-processing-sources="processing/sketch_multitouch_sparks.pde processing/Disc.pde"></canvas>
 
 
-        </div>
-
-
-
-        <script type="text/javascript" src="js/jquery.js"></script>
-        <script type="text/javascript" src="js/jquery-ui.js"></script>
-        <script type="text/javascript" src="phonegap.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
-            app.initialize();
-        </script>
-    </body>
+    <!--
+    <script type="text/javascript" src="js/jquery-ui.js"></script>
+    -->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="phonegap.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/processing-1.4.1.min.js"></script>
+    <script type="text/javascript">
+      app.initialize();
+    </script>
+  </body>
 </html>
