@@ -62,7 +62,7 @@ void touchStart(TouchEvent touchEvent) {
   for (int i=0; i<touchEvent.touches.length; i++) {
     debug = "startstart: " + showObject_all(touchEvent.touches[i]);
     int id = touchEvent.touches[i].identifier;
-    if (draggedMagnets.contains(id)) {
+    if (draggedMagnets.containsKey(id)) {
       alert("this shouldn't happen! alfjknsdalmcl");
     }
 
@@ -100,10 +100,12 @@ void touchMove(TouchEvent touchEvent) {
     int id = touchEvent.touches[i].identifier;
     debug = "HERE";
 
-    if (draggedMagnets.contains(id)) {
+    if (draggedMagnets.containsKey(id)) {
       draggedMagnets.get(id).move(PVector.sub(currentPos, prevTouches.get(id)));
     }
+    debug = "HERE2";
     prevTouches.put(id, currentPos);
+    debug = "HERE3";
 
     debug = "move: " + showObject_all(touchEvent.touches[i]);
   }
