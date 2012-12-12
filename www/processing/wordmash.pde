@@ -6,6 +6,7 @@ ArrayList<PVector> prevTouches = new ArrayList<PVector>();
 // if multitouch events are fired, this is set to true
 boolean useMultiTouch = false;
 
+String debug = "";
 
 void setup() {
   size(960, 630);
@@ -25,8 +26,8 @@ void draw() {
   }
 
   updateDiscs();
-  text("touches: "+ touches.size(), 10, 10);
   touches.clear();
+  text("debug: " + touches.size(), 10, 10);
 }
 
 // instructs each spark to draw itself and removes extinguished sparks
@@ -47,21 +48,21 @@ void updateDiscs() {
 
 // just in case I want to know what a Jquery select gives me
 function showObject(d) {
-  out = "{\n"
+  out = "{\n";
   for (key=0; key<d.length; ++key) {
-    out += key + " : " + d[key] + "\n"
+    out += key + " : " + d[key] + "\n";
   }
-  out += '}'
-  return out
+  out += '}';
+  return out;
 }
 // just in case I want to know what a Jquery select gives me
-function printJquery_all(d) {
+function showObject_all(d) {
   out = "{\n"
   for (key in d) {
-    out += key + " : " + d[key] + "\n"
+    out += key + " : " + d[key] + "\n";
   }
   out += '}'
-  alert(out)
+  return out;
 }
 
 // respond to multitouch events
@@ -71,7 +72,8 @@ void touchMove(TouchEvent touchEvent) {
   useMultiTouch = true;
 
   for (int i=0; i<touchEvent.touches.length; i++) {
-    text("ding: "+ showObject(touchEvent.touches[i]), 10, 30);
+    //text("ding: "+ showObject(touchEvent.touches[i]), 10, 30);
+    debug = showObject(touchEvent.touches[i]);
     touches.add(new PVector(
       touchEvent.touches[i].offsetX,
       touchEvent.touches[i].offsetY
