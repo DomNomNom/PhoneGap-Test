@@ -52,6 +52,7 @@ void touchMove(TouchEvent touchEvent) {
   useMultiTouch = true;
 
   for (int i=0; i<touchEvent.touches.length; i++) {
+    alert(touchEvent.touches[i]);
     touches.add(new PVector(
       touchEvent.touches[i].offsetX,
       touchEvent.touches[i].offsetY
