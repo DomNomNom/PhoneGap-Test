@@ -25,6 +25,7 @@ void draw() {
   }
 
   updateDiscs();
+  text("touches: "+ touches.size(), 10, 10);
   touches.clear();
 }
 
@@ -32,12 +33,11 @@ void draw() {
 void updateDiscs() {
   for (Magnet m : magnets) {
 
+    m.renderColour = color(204, 204, 255);
     for (PVector touch : touches) { // bad n^2 collision detection... is good enough
       if (m.on(touch)) {
         m.renderColour = color(255, 204, 204);
-      }
-      else {
-        m.renderColour = color(204, 204, 255);
+        break;
       }
     }
 
