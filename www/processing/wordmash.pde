@@ -98,10 +98,13 @@ void touchMove(TouchEvent touchEvent) {
     );
 
     int id = touchEvent.touches[i].identifier;
-    debug = "HERE";
+    debug = "HERE" + draggedMagnets;
 
     if (draggedMagnets.containsKey(id)) {
-      draggedMagnets.get(id).move(PVector.sub(currentPos, prevTouches.get(id)));
+      debug = "IN HERE" + draggedMagnets.get(id);
+      draggedMagnets.get(id).move(
+        PVector.sub(currentPos, prevTouches.get(id))
+      );
     }
     debug = "HERE2";
     prevTouches.put(id, currentPos);
