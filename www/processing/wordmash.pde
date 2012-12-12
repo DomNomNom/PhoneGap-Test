@@ -12,7 +12,7 @@ void setup() {
   background(0);
   smooth();
   magnets = new ArrayList<Magnet>();
-  magnets.add(new Magnet(10, 100));
+  magnets.add(new Magnet(300, 500));
   magnets.add(new Magnet(300, 100));
 }
 
@@ -46,13 +46,13 @@ void updateDiscs() {
 }
 
 // just in case I want to know what a Jquery select gives me
-function printJquery(d) {
+function showObject(d) {
   out = "{\n"
   for (key=0; key<d.length; ++key) {
     out += key + " : " + d[key] + "\n"
   }
   out += '}'
-  alert(out)
+  return out
 }
 // just in case I want to know what a Jquery select gives me
 function printJquery_all(d) {
@@ -71,7 +71,7 @@ void touchMove(TouchEvent touchEvent) {
   useMultiTouch = true;
 
   for (int i=0; i<touchEvent.touches.length; i++) {
-    printJquery(touchEvent.touches[i]);
+    text("ding: "+ showObject(touchEvent.touches[i]), 10, 30);
     touches.add(new PVector(
       touchEvent.touches[i].offsetX,
       touchEvent.touches[i].offsetY
