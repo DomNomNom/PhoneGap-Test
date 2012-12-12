@@ -61,6 +61,8 @@ function showObject_all(d) {
 // COMMENT THIS OUT TO MAKE APP COMPILE IN PROCESSING IDE
 // /*
 void touchStart(TouchEvent touchEvent) {
+  debug = "startstart: " + showObject_all(touchEvent.touches[i]);
+
   int id = touchEvent.touches[i].identifier;
   if (draggedMagnets.contains(id)) {
     alert("this shouldn't happen! alfjknsdalmcl");
@@ -80,7 +82,7 @@ void touchStart(TouchEvent touchEvent) {
   }
   prevTouches.put(id, currentPos);
 
-    debug = "start: " + showObject_all(touchEvent.touches[i]);
+  debug = "start: " + showObject_all(touchEvent.touches[i]);
 }
 
 void touchMove(TouchEvent touchEvent) {
