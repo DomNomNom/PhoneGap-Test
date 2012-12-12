@@ -21,11 +21,11 @@ void draw() {
 
   if (!useMultiTouch) {
     // respond to mouse movement
-    touches.clear();
     touches.add(new PVector(mouseX, mouseY));
   }
 
   updateDiscs();
+  touches.clear();
 }
 
 // instructs each spark to draw itself and removes extinguished sparks
@@ -51,12 +51,18 @@ void updateDiscs() {
 void touchMove(TouchEvent touchEvent) {
   useMultiTouch = true;
 
-  for (int i=0; i < touchEvent.touches.length; i++) {
+  for (int i=0; i<touchEvent.touches.length; i++) {
+    touches.add(new PVector(
+      touchEvent.touches[i].offsetX,
+      touchEvent.touches[i].offsetY
+    ));
+    /*
     int x = touchEvent.touches[i].offsetX;
     int y = touchEvent.touches[i].offsetY;
 
     Disc newDisc = new Disc(x, y);
     magnets.add(newDisc);
+    */
   }
 }
 //*/
