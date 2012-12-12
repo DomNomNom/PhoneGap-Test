@@ -20,6 +20,10 @@ class Magnet {
     );
   }
 
+  void move(PVector v) {
+    pos.add(v);
+  }
+
   // draw the spark to screen
   void render() {
     if (isAlive) {

@@ -1,7 +1,9 @@
 ArrayList<Magnet> magnets;
 
 ArrayList<PVector> touches     = new ArrayList<PVector>();
-ArrayList<PVector> prevTouches = new ArrayList<PVector>();
+
+HashMap<Integer, PVector> prevTouches    = new HashMap<Integer, PVector>();
+HashMap<Integer, Magnet > draggedMagnets = new HashMap<Integer, Magnet >();
 
 // if multitouch events are fired, this is set to true
 boolean useMultiTouch = false;
@@ -13,7 +15,7 @@ void setup() {
   background(0);
   smooth();
   magnets = new ArrayList<Magnet>();
-  magnets.add(new Magnet(300, 500));
+  magnets.add(new Magnet(300, 250));
   magnets.add(new Magnet(300, 100));
 }
 
@@ -25,15 +27,19 @@ void draw() {
     touches.add(new PVector(mouseX, mouseY));
   }
 
-  updateDiscs();
+  updateMagnets();
   touches.clear();
-  text("debug: " + debug, 10, 10);
+  debug = "" + mousePressed;
+  if (debug != "") {
+    text("debug: " + debug, 10, 10);
+  }
 }
 
 // instructs each spark to draw itself and removes extinguished sparks
-void updateDiscs() {
+void updateMagnets() {
   for (Magnet m : magnets) {
 
+    /*
     m.renderColour = color(204, 204, 255);
     for (PVector touch : touches) { // bad n^2 collision detection... is good enough
       if (m.on(touch)) {
@@ -41,6 +47,7 @@ void updateDiscs() {
         break;
       }
     }
+    */
 
     m.render();
   }
@@ -68,16 +75,45 @@ function showObject_all(d) {
 // respond to multitouch events
 // COMMENT THIS OUT TO MAKE APP COMPILE IN PROCESSING IDE
 // /*
+void touchStart(TouchEvent touchEvent) {
+  int id = touchEvent.touches[i].identifier;
+  if (draggedMagnets.contains(id)) {
+    alert("this shouldn't happen! alfjknsdalmcl");
+  }
+
+  PVector currentPos = new PVector(
+    touchEvent.touches[i].offsetX,
+    touchEvent.touches[i].offsetY
+  );
+
+
+  Magnet touched = null;
+  for (Magnet m : magnets) {
+    if (m.on(currentPos)) {
+      draggedMagnets.put(id, m);
+    }
+  }
+  prevTouches.put(id, currentPos);
+}
+
 void touchMove(TouchEvent touchEvent) {
   useMultiTouch = true;
 
   for (int i=0; i<touchEvent.touches.length; i++) {
     //text("ding: "+ showObject(touchEvent.touches[i]), 10, 30);
     debug = showObject_all(touchEvent.touches[i]);
-    touches.add(new PVector(
+
+    PVector currentPos = new PVector(
       touchEvent.touches[i].offsetX,
       touchEvent.touches[i].offsetY
-    ));
+    );
+
+    int id = touchEvent.touches[i].identifier;
+
+    if (draggedMagnets.contains(id)) {
+      draggedMagnets.get(id).move(PVector.sub(currentPos, prevTouches.get(id)));
+    }
+    prevTouches.put(id, currentPos);
     /*
     int x = touchEvent.touches[i].offsetX;
     int y = touchEvent.touches[i].offsetY;
