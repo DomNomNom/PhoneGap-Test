@@ -59,36 +59,37 @@ function showObject_all(d) {
 // COMMENT THIS OUT TO MAKE APP COMPILE IN PROCESSING IDE
 // /*
 void touchStart(TouchEvent touchEvent) {
-  debug = "startstart: " + showObject_all(touchEvent.touches[i]);
-
-  int id = touchEvent.touches[i].identifier;
-  if (draggedMagnets.contains(id)) {
-    alert("this shouldn't happen! alfjknsdalmcl");
-  }
-
-  PVector currentPos = new PVector(
-    touchEvent.touches[i].offsetX,
-    touchEvent.touches[i].offsetY
-  );
-
-
-  Magnet touched = null;
-  for (Magnet m : magnets) {
-    if (m.on(currentPos)) {
-      draggedMagnets.put(id, m);
+  for (int i=0; i<touchEvent.touches.length; i++) {
+    debug = "startstart: " + showObject_all(touchEvent.touches[i]);
+    int id = touchEvent.touches[i].identifier;
+    if (draggedMagnets.contains(id)) {
+      alert("this shouldn't happen! alfjknsdalmcl");
     }
-  }
-  prevTouches.put(id, currentPos);
 
-  debug = "start: " + showObject_all(touchEvent.touches[i]);
+    PVector currentPos = new PVector(
+      touchEvent.touches[i].offsetX,
+      touchEvent.touches[i].offsetY
+    );
+
+
+    Magnet touched = null;
+    for (Magnet m : magnets) {
+      if (m.on(currentPos)) {
+        draggedMagnets.put(id, m);
+      }
+    }
+    prevTouches.put(id, currentPos);
+
+    debug = "start: " + showObject_all(touchEvent.touches[i]);
+  }
 }
 
 void touchMove(TouchEvent touchEvent) {
-  debug = "startmove: " + showObject_all(touchEvent.touches[i]);
 
   useMultiTouch = true;
 
   for (int i=0; i<touchEvent.touches.length; i++) {
+    debug = "startmove: " + showObject_all(touchEvent.touches[i]);
 
     PVector currentPos = new PVector(
       touchEvent.touches[i].offsetX,
