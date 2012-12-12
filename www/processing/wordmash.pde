@@ -73,7 +73,7 @@ void touchMove(TouchEvent touchEvent) {
 
   for (int i=0; i<touchEvent.touches.length; i++) {
     //text("ding: "+ showObject(touchEvent.touches[i]), 10, 30);
-    debug = showObject(touchEvent.touches[i]);
+    debug = showObject_all(touchEvent.touches[i]);
     touches.add(new PVector(
       touchEvent.touches[i].offsetX,
       touchEvent.touches[i].offsetY
