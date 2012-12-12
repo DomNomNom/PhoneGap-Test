@@ -27,7 +27,7 @@ void draw() {
 
   updateDiscs();
   touches.clear();
-  text("debug: " + touches.size(), 10, 10);
+  text("debug: " + debug, 10, 10);
 }
 
 // instructs each spark to draw itself and removes extinguished sparks
