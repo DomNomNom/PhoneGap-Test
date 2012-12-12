@@ -29,7 +29,8 @@ class Magnet {
     if (isAlive) {
 
       fill(renderColour);
-      noStroke();
+      //noStroke();
+      stroke(20, 20, 20);
 
       rect(pos.x, pos.y, size.x, size.y);
 

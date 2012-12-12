@@ -80,7 +80,7 @@ void touchStart(TouchEvent touchEvent) {
     }
     prevTouches.put(id, currentPos);
 
-    debug = "start: " + showObject_all(touchEvent.touches[i]);
+    debug = "start: " + showObject_all(draggedMagnets.keySet());
   }
 }
 
