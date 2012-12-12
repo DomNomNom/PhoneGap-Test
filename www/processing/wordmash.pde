@@ -91,12 +91,14 @@ void touchMove(TouchEvent touchEvent) {
   for (int i=0; i<touchEvent.touches.length; i++) {
     debug = "startmove: " + showObject_all(touchEvent.touches[i]);
 
+
     PVector currentPos = new PVector(
       touchEvent.touches[i].offsetX,
       touchEvent.touches[i].offsetY
     );
 
     int id = touchEvent.touches[i].identifier;
+    debug = "HERE";
 
     if (draggedMagnets.contains(id)) {
       draggedMagnets.get(id).move(PVector.sub(currentPos, prevTouches.get(id)));
