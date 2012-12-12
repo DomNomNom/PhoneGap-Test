@@ -45,6 +45,25 @@ void updateDiscs() {
   }
 }
 
+// just in case I want to know what a Jquery select gives me
+function printJquery(d) {
+  out = "{\n"
+  for (key=0; key<d.length; ++key) {
+    out += key + " : " + d[key] + "\n"
+  }
+  out += '}'
+  alert(out)
+}
+// just in case I want to know what a Jquery select gives me
+function printJquery_all(d) {
+  out = "{\n"
+  for (key in d) {
+    out += key + " : " + d[key] + "\n"
+  }
+  out += '}'
+  alert(out)
+}
+
 // respond to multitouch events
 // COMMENT THIS OUT TO MAKE APP COMPILE IN PROCESSING IDE
 // /*
@@ -52,7 +71,7 @@ void touchMove(TouchEvent touchEvent) {
   useMultiTouch = true;
 
   for (int i=0; i<touchEvent.touches.length; i++) {
-    alert(touchEvent.touches[i]);
+    printJquery(touchEvent.touches[i]);
     touches.add(new PVector(
       touchEvent.touches[i].offsetX,
       touchEvent.touches[i].offsetY
