@@ -1,7 +1,5 @@
 ArrayList<Magnet> magnets;
 
-ArrayList<PVector> touches     = new ArrayList<PVector>();
-
 HashMap<Integer, PVector> prevTouches    = new HashMap<Integer, PVector>();
 HashMap<Integer, Magnet > draggedMagnets = new HashMap<Integer, Magnet >();
 
@@ -24,12 +22,10 @@ void draw() {
 
   if (!useMultiTouch) {
     // respond to mouse movement
-    touches.add(new PVector(mouseX, mouseY));
+    //debug = "" + mousePressed;
   }
 
   updateMagnets();
-  touches.clear();
-  debug = "" + mousePressed;
   if (debug != "") {
     text("debug: " + debug, 10, 10);
   }
@@ -38,17 +34,6 @@ void draw() {
 // instructs each spark to draw itself and removes extinguished sparks
 void updateMagnets() {
   for (Magnet m : magnets) {
-
-    /*
-    m.renderColour = color(204, 204, 255);
-    for (PVector touch : touches) { // bad n^2 collision detection... is good enough
-      if (m.on(touch)) {
-        m.renderColour = color(255, 204, 204);
-        break;
-      }
-    }
-    */
-
     m.render();
   }
 }
@@ -94,14 +79,14 @@ void touchStart(TouchEvent touchEvent) {
     }
   }
   prevTouches.put(id, currentPos);
+
+    debug = "start: " + showObject_all(touchEvent.touches[i]);
 }
 
 void touchMove(TouchEvent touchEvent) {
   useMultiTouch = true;
 
   for (int i=0; i<touchEvent.touches.length; i++) {
-    //text("ding: "+ showObject(touchEvent.touches[i]), 10, 30);
-    debug = showObject_all(touchEvent.touches[i]);
 
     PVector currentPos = new PVector(
       touchEvent.touches[i].offsetX,
@@ -114,13 +99,8 @@ void touchMove(TouchEvent touchEvent) {
       draggedMagnets.get(id).move(PVector.sub(currentPos, prevTouches.get(id)));
     }
     prevTouches.put(id, currentPos);
-    /*
-    int x = touchEvent.touches[i].offsetX;
-    int y = touchEvent.touches[i].offsetY;
 
-    Disc newDisc = new Disc(x, y);
-    magnets.add(newDisc);
-    */
+    debug = "move: " + showObject_all(touchEvent.touches[i]);
   }
 }
 //*/
