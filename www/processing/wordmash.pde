@@ -25,18 +25,15 @@ void draw() {
     //debug = "" + mousePressed;
   }
 
-  updateMagnets();
+  for (Magnet m : magnets) {
+    m.render();
+  }
+
   if (debug != "") {
     text("debug: " + debug, 10, 10);
   }
 }
 
-// instructs each spark to draw itself and removes extinguished sparks
-void updateMagnets() {
-  for (Magnet m : magnets) {
-    m.render();
-  }
-}
 
 // just in case I want to know what a Jquery select gives me
 function showObject(d) {
@@ -86,6 +83,8 @@ void touchStart(TouchEvent touchEvent) {
 }
 
 void touchMove(TouchEvent touchEvent) {
+  debug = "startmove: " + showObject_all(touchEvent.touches[i]);
+
   useMultiTouch = true;
 
   for (int i=0; i<touchEvent.touches.length; i++) {
