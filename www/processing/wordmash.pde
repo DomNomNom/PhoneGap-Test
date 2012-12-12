@@ -13,8 +13,8 @@ void setup() {
   background(0);
   smooth();
   magnets = new ArrayList<Magnet>();
-  magnets.add(new Magnet(300, 250));
-  magnets.add(new Magnet(300, 100));
+  magnets.add(new Magnet(300,  50));
+  magnets.add(new Magnet(300, 300));
 }
 
 void draw() {
@@ -29,6 +29,7 @@ void draw() {
     m.render();
   }
 
+  fill(color(200,200,200));
   if (debug != "") {
     text("debug: " + debug, 10, 10);
   }
@@ -46,11 +47,11 @@ function showObject(d) {
 }
 // just in case I want to know what a Jquery select gives me
 function showObject_all(d) {
-  out = "{\n"
+  out = "{\n";
   for (key in d) {
     out += key + " : " + d[key] + "\n";
   }
-  out += '}'
+  out += '}';
   return out;
 }
 
