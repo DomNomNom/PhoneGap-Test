@@ -60,11 +60,12 @@ function showObject_all(d) {
 // /*
 void touchStart(TouchEvent touchEvent) {
   for (int i=0; i<touchEvent.touches.length; i++) {
-    debug = "startstart: " + showObject_all(touchEvent.touches[i]);
     int id = touchEvent.touches[i].identifier;
     if (draggedMagnets.containsKey(id)) {
-      alert("this shouldn't happen! alfjknsdalmcl");
+      //alert("this shouldn't happen! alfjknsdalmcl");
+      debug = id + "\n\nExising: " + showObject_all(draggedMagnets.keySet().toArray());
     }
+    debug = "not applicable";
 
     PVector currentPos = new PVector(
       touchEvent.touches[i].offsetX,
@@ -80,7 +81,6 @@ void touchStart(TouchEvent touchEvent) {
     }
     prevTouches.put(id, currentPos);
 
-    debug = "start: " + showObject_all(draggedMagnets.keySet().toArray());
   }
 }
 
@@ -89,28 +89,21 @@ void touchMove(TouchEvent touchEvent) {
   useMultiTouch = true;
 
   for (int i=0; i<touchEvent.touches.length; i++) {
-    debug = "startmove: " + showObject_all(touchEvent.touches[i]);
-
-
     PVector currentPos = new PVector(
       touchEvent.touches[i].offsetX,
       touchEvent.touches[i].offsetY
     );
 
     int id = touchEvent.touches[i].identifier;
-    debug = "HERE" + draggedMagnets;
 
     if (draggedMagnets.containsKey(id)) {
-      debug = "IN HERE" + draggedMagnets.get(id);
       draggedMagnets.get(id).move(
         PVector.sub(currentPos, prevTouches.get(id))
       );
     }
-    debug = "HERE2";
     prevTouches.put(id, currentPos);
-    debug = "HERE3";
 
-    debug = "move: " + showObject_all(touchEvent.touches[i]);
+    //debug = "move: " + showObject_all(touchEvent.touches[i]);
   }
 }
 //*/
