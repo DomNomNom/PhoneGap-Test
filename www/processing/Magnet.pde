@@ -16,10 +16,10 @@ class Magnet {
 
   public boolean on(PVector v) {
     return (
-         pos.x <= v.x
-      && pos.y <= v.y
-      && pos.x + size.x > v.x
-      && pos.y + size.y > v.y
+         pos.x          <= v.x
+      && pos.y          <= v.y
+      && pos.x + size.x >  v.x
+      && pos.y + size.y >  v.y
     );
   }
 
