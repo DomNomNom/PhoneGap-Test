@@ -61,11 +61,6 @@ function showObject_all(d) {
 void touchStart(TouchEvent touchEvent) {
   for (int i=0; i<touchEvent.touches.length; i++) {
     int id = touchEvent.touches[i].identifier;
-    if (draggedMagnets.containsKey(id)) {
-      //alert("this shouldn't happen! alfjknsdalmcl");
-      debug = id + "\n\nExising: " + showObject_all(draggedMagnets.keySet().toArray());
-    }
-    debug = "not applicable";
 
     PVector currentPos = new PVector(
       touchEvent.touches[i].offsetX,
@@ -74,13 +69,16 @@ void touchStart(TouchEvent touchEvent) {
 
 
     Magnet touched = null;
-    for (Magnet m : magnets) {
-      if (m.on(currentPos)) {
-        draggedMagnets.put(id, m);
-      }
-    }
-    prevTouches.put(id, currentPos);
+    for (Magnet m : magnets)
+      if (m.on(currentPos))
+        touched = m;
 
+    if (touched != null && !touched.dragged) {
+      touched.dragged = true;
+      draggedMagnets.put(id, touched);
+    }
+
+    prevTouches.put(id, currentPos);
   }
 }
 
@@ -106,4 +104,18 @@ void touchMove(TouchEvent touchEvent) {
     //debug = "move: " + showObject_all(touchEvent.touches[i]);
   }
 }
+
+void touchEnd   (TouchEvent touchEvent) { stopdrag(touchEvent); }
+void touchCancle(TouchEvent touchEvent) { stopdrag(touchEvent); }
+void stopdrag(TouchEvent touchEvent) {
+  for (int i=0; i<touchEvent.touches.length; ++i) {
+    int id = touchEvent.touches[i].identifier;
+    if (draggedMagnets.containsKey(id)) {
+      Magnet removedMagnet = draggedMagnets.remove(id);
+      removedMagnet.dragged = false;
+    }
+  }
+}
+
+
 //*/

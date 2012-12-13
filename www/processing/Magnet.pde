@@ -3,8 +3,11 @@ class Magnet {
   PVector pos = new PVector();
   PVector size = new PVector(200, 200);
 
-  color renderColour = color(255, 204, 204);
+  color fillColour = color(255, 204, 204);
+  color strokeColour = color(255, 204, 204);
+  color strokeColour_dragged = color(255, 204, 204);
 
+  boolean dragged = false;
   boolean isAlive = true;
 
   Magnet(int x, int y) {
@@ -28,12 +31,13 @@ class Magnet {
   void render() {
     if (isAlive) {
 
-      fill(renderColour);
+      fill(fillColour);
       //noStroke();
-      stroke(20, 20, 20);
+      if (dragged) stroke(strokeColour_dragged);
+      else         stroke(strokeColour        );
+
 
       rect(pos.x, pos.y, size.x, size.y);
-
     }
   }
 
