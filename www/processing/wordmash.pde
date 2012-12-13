@@ -105,12 +105,14 @@ void touchMove(TouchEvent touchEvent) {
   }
 }
 
-void touchEnd   (TouchEvent touchEvent) { stopdrag(touchEvent); }
-void touchCancle(TouchEvent touchEvent) { stopdrag(touchEvent); }
-void stopdrag(TouchEvent touchEvent) {
+void touchEnd   (TouchEvent touchEvent) { stopDrag(touchEvent); }
+void touchCancle(TouchEvent touchEvent) { stopDrag(touchEvent); }
+void stopDrag(TouchEvent touchEvent) {
+  debug = "stopDrag";
   for (int i=0; i<touchEvent.touches.length; ++i) {
     int id = touchEvent.touches[i].identifier;
     if (draggedMagnets.containsKey(id)) {
+      debug = "removed key: " + id;
       Magnet removedMagnet = draggedMagnets.remove(id);
       removedMagnet.dragged = false;
     }

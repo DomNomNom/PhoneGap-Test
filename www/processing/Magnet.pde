@@ -4,8 +4,8 @@ class Magnet {
   PVector size = new PVector(200, 200);
 
   color fillColour = color(255, 204, 204);
-  color strokeColour = color(255, 204, 204);
-  color strokeColour_dragged = color(255, 204, 204);
+  color strokeColour         = color(0  , 255, 0);
+  color strokeColour_dragged = color(255, 0, 0);
 
   boolean dragged = false;
   boolean isAlive = true;
