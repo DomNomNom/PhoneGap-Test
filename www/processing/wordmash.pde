@@ -105,8 +105,8 @@ void touchMove(TouchEvent touchEvent) {
   }
 }
 
-void touchEnd   (TouchEvent touchEvent) { stopDrag(touchEvent); debug = "endTouch";}
-void touchCancle(TouchEvent touchEvent) { stopDrag(touchEvent); debug = "cancle"; }
+void touchEnd   (TouchEvent touchEvent) { debug="A"; stopDrag(touchEvent); debug = "endTouch";}
+void touchCancle(TouchEvent touchEvent) { debug="B"; stopDrag(touchEvent); debug = "cancle"; }
 void stopDrag(TouchEvent touchEvent) {
   for (int i=0; i<touchEvent.touches.length; ++i) {
     int id = touchEvent.touches[i].identifier;
