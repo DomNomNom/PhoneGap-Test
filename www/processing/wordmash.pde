@@ -7,6 +7,7 @@ HashMap<Integer, Magnet > draggedMagnets = new HashMap<Integer, Magnet >();
 boolean useMultiTouch = false;
 
 String debug = "";
+String debug2 = "";
 
 void setup() {
   size(960, 630);
@@ -29,10 +30,11 @@ void draw() {
     m.render();
   }
 
+  debug2 = ""+ showObject_all(draggedMagnets.keySet().toString());
+
   fill(color(200,200,200));
-  if (debug != "") {
-    text("debug: " + debug, 10, 10);
-  }
+  if (debug  != "")  text("debug: " + debug,  10, 10);
+  if (debug2 != "")  text("debug: " + debug2, 200, 20);
 }
 
 
@@ -101,12 +103,12 @@ void touchMove(TouchEvent touchEvent) {
     }
     prevTouches.put(id, currentPos);
 
-    //debug = "move: " + showObject_all(touchEvent.touches[i]);
+    debug = "move: " + showObject_all(touchEvent.touches[i]);
   }
 }
 
-void touchEnd   (TouchEvent touchEvent) { debug="A"; stopDrag(touchEvent); debug = "endTouch";}
-void touchCancle(TouchEvent touchEvent) { debug="B"; stopDrag(touchEvent); debug = "cancle"; }
+void touchEnd   (TouchEvent touchEvent) { stopDrag(touchEvent); }
+void touchCancle(TouchEvent touchEvent) { stopDrag(touchEvent); }
 void stopDrag(TouchEvent touchEvent) {
   for (int i=0; i<touchEvent.touches.length; ++i) {
     int id = touchEvent.touches[i].identifier;
