@@ -6,6 +6,10 @@ HashMap<Integer, Magnet > draggedMagnets = new HashMap<Integer, Magnet >();
 // if multitouch events are fired, this is set to true
 boolean useMultiTouch = false;
 
+float prevTime = 0;
+float timeStep = 15; // period of physics steps (in millis)
+float accumulator = 0;
+
 String debug = "";
 String debug2 = "";
 
@@ -19,18 +23,35 @@ void setup() {
 }
 
 void draw() {
-  background(0);
 
+  // == input ==
   if (!useMultiTouch) {
-    // respond to mouse movement
+    // respond to mouse movement ... maybe
     //debug = "" + mousePressed;
   }
 
+
+  // == update ==
+
+  float timeNow = millis();
+  float frameTime = timeNow - prevTime;
+  prevTime = timeNow;
+  accumulator += frameTime;
+  while (accumulator >= timeStep) {
+    for (Magnet m : magnets)
+      m.update(timeStep);
+
+    accumulator -= timeStep;
+  }
+
+
+  // == draw ==
+  background(0);
   for (Magnet m : magnets) {
     m.render();
   }
 
-  debug2 = ""+ showObject_all(draggedMagnets.keySet().toString());
+  //debug2 = ""+ showObject_all(draggedMagnets.keySet().toArray());
 
   fill(color(200,200,200));
   if (debug  != "")  text("debug: " + debug,  10, 10);
@@ -71,12 +92,15 @@ void touchStart(TouchEvent touchEvent) {
 
 
     Magnet touched = null;
-    for (Magnet m : magnets)
-      if (m.on(currentPos))
+    for (Magnet m : magnets) {
+      if (m.on(currentPos)) {
         touched = m;
-
+        break;
+      }
+    }
     if (touched != null && !touched.dragged) {
-      touched.dragged = true;
+      //touched.dragged = true;
+      touched.drag(prevTouches(id), currentPos);
       draggedMagnets.put(id, touched);
     }
 

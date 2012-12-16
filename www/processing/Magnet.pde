@@ -7,11 +7,16 @@ class Magnet {
   color strokeColour         = color(0  , 255, 0);
   color strokeColour_dragged = color(255, 0, 0);
 
+  int dragEndTime = 0;
   boolean dragged = false;
-  boolean isAlive = true;
 
   Magnet(int x, int y) {
     pos = new PVector(x, y);
+  }
+
+  public void update(dt) {
+    if (millis() > dragEndTime)
+      dragged = false;
   }
 
   public boolean on(PVector v) {
@@ -23,22 +28,26 @@ class Magnet {
     );
   }
 
+  public void drag(PVector prev, PVector now) {
+    if (!dragged) {
+      pos.add(PVector.sub(now, prev));
+      dragged = true;
+    }
+  }
+
   void move(PVector v) {
     pos.add(v);
   }
 
   // draw the spark to screen
   void render() {
-    if (isAlive) {
-
-      fill(fillColour);
-      //noStroke();
-      if (dragged) stroke(strokeColour_dragged);
-      else         stroke(strokeColour        );
+    fill(fillColour);
+    //noStroke();
+    if (dragged) stroke(strokeColour_dragged);
+    else         stroke(strokeColour        );
 
 
-      rect(pos.x, pos.y, size.x, size.y);
-    }
+    rect(pos.x, pos.y, size.x, size.y);
   }
 
 }
