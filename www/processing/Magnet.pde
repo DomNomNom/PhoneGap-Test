@@ -7,6 +7,7 @@ class Magnet {
   color strokeColour         = color(0  , 255, 0);
   color strokeColour_dragged = color(255, 0, 0);
 
+  int dragPeriod = 100;
   int dragEndTime = 0;
   boolean dragged = false;
 
@@ -32,6 +33,7 @@ class Magnet {
     if (!dragged) {
       pos.add(PVector.sub(now, prev));
       dragged = true;
+      dragEndTime = millis() + dragPeriod;
     }
   }
 
