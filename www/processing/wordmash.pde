@@ -91,19 +91,6 @@ void touchStart(TouchEvent touchEvent) {
     );
 
 
-    Magnet touched = null;
-    for (Magnet m : magnets) {
-      if (m.on(currentPos)) {
-        touched = m;
-        break;
-      }
-    }
-    if (touched != null && !touched.dragged) {
-      //touched.dragged = true;
-      touched.drag(prevTouches(id), currentPos);
-      draggedMagnets.put(id, touched);
-    }
-
     prevTouches.put(id, currentPos);
   }
 }
@@ -120,11 +107,19 @@ void touchMove(TouchEvent touchEvent) {
 
     int id = touchEvent.touches[i].identifier;
 
-    if (draggedMagnets.containsKey(id)) {
-      draggedMagnets.get(id).move(
-        PVector.sub(currentPos, prevTouches.get(id))
-      );
+    Magnet touched = null;
+    for (Magnet m : magnets) {  // TODO
+      if (m.on(currentPos)) {
+        touched = m;
+        break;
+      }
     }
+    if (touched != null && !touched.dragged) {
+      //touched.dragged = true;
+      touched.drag(prevTouches(id), currentPos);
+      draggedMagnets.put(id, touched);
+    }
+
     prevTouches.put(id, currentPos);
 
     debug = "move: " + showObject_all(touchEvent.touches[i]);
