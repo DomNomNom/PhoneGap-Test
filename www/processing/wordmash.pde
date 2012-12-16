@@ -114,10 +114,10 @@ void touchMove(TouchEvent touchEvent) {
         break;
       }
     }
-    if (touched != null && !touched.dragged) {
+    if (touched != null) {
       //touched.dragged = true;
       touched.drag(prevTouches(id), currentPos);
-      draggedMagnets.put(id, touched);
+      //draggedMagnets.put(id, touched);
     }
 
     prevTouches.put(id, currentPos);
